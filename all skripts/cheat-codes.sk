@@ -15,25 +15,25 @@ command /cheatcode [<text>]:
         set {_code} to arg
         set {_amount} to 0
 
-        if {_code} is "GX8W4":
-            set {_amount} to 10
-        if {_code} is "JD294":
-            set {_amount} to 10
-        if {_code} is "SMDE33":
-            set {_amount} to 20
-        if {_code} is "23EJ4":
-            set {_amount} to 20
-        if {_code} is "9JEU8":
-            set {_amount} to 50
-        if {_code} is "8W3EW":
-            set {_amount} to 100
-        if {_code} is "KE93W":
-            set {_amount} to 200
+        if {_code} is "GX8W4": #Cheat Code #1
+            set {_amount} to 10 #Prize #1
+        if {_code} is "JD294": #Cheat Code #2
+            set {_amount} to 10 #Prize #2
+        if {_code} is "SMD33": #Cheat Code #3
+            set {_amount} to 20 #Prize #3
+        if {_code} is "23EJ4": #Cheat Code #4
+            set {_amount} to 20 #Prize #4
+        if {_code} is "9JEU8": #Cheat Code #5
+            set {_amount} to 50 #Prize #5
+        if {_code} is "8W3EW": #Cheat Code #6
+            set {_amount} to 100 #Prize #6
+        if {_code} is "KE93W": #Cheat Code #7
+            set {_amount} to 200 #Prize #7
 
         if {_amount} is 0:
             send "&cInvalid cheat code."
             stop
 
-        add {_amount} to {tokens::%{_uuid}%}
+        console command "eco give %player% %{_amount}%"
         set {cheatcode::%{_uuid}%} to {_now}
-        send "&aCheat code accepted! You received &e%{_amount}% &atokens."
+        send "&aCheat code accepted! You received &a$&e%{_amount}%."
