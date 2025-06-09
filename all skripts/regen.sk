@@ -1,17 +1,17 @@
-command /regen <text>:
+command /regen <text>: #To regenerate PVP rooms and ore generators.
     trigger:
-        if player is not an op:
+        if player is not an op: #Only allow Operators (permission check)
             send "&cYou do not have permission to use this command."
             stop
 
-        if arg 1 is "pvproom":
+        if arg 1 is "pvproom": #Regenerate PVP room
             send "&aStarting automatic regeneration of PvP room."
-            set {_x} to -159
-            set {_y} to 62
-            set {_z} to 151
-            set {_x2} to -115
-            set {_y2} to 20
-            set {_z2} to 107
+            set {_x} to -100 #First corner X pos
+            set {_y} to 50 #First corner Y pos
+            set {_z} to 150 #First corner Z pos
+            set {_x2} to -100 #Second corner X pos
+            set {_y2} to 25 #Second corner Y pos
+            set {_z2} to 100 #Second corner Z pos
 
             execute player command "//pos1 %{_x}%,%{_y}%,%{_z}%"
             execute player command "//pos2 %{_x2}%,%{_y2}%,%{_z2}%"
@@ -19,14 +19,14 @@ command /regen <text>:
             execute player command "//set stone,gold_ore,diamond_ore,emerald_ore,coal_ore,gold_ore,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,iron_block"
             execute player command "//replace iron_block iron_block,gold_block"
 
-        else if arg 1 is "gen":
+        else if arg 1 is "gen": #Regenerate Ore generator
             send "&aStarting automatic regeneration of generator."
-            set {_x} to -118
-            set {_y} to 83
-            set {_z} to 125
-            set {_x2} to -110
-            set {_y2} to 87
-            set {_z2} to 133
+            set {_x} to -100 #First corner X pos
+            set {_y} to 75 #First corner Y pos
+            set {_z} to 125 #First corner Z pos
+            set {_x2} to -125 #Second corner X pos
+            set {_y2} to 100 #Second corner Y pos
+            set {_z2} to 150 #Second corner Z pos
 
             execute player command "//pos1 %{_x}%,%{_y}%,%{_z}%"
             execute player command "//pos2 %{_x2}%,%{_y2}%,%{_z2}%"
