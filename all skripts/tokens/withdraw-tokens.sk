@@ -1,5 +1,5 @@
 
-# Command: Withdraw tokens in exchange for enchanted sunflowers
+# Command: Withdraw virtual tokens in exchange for in-game physical tokens
 command /withdrawtokens [<integer>]:
     aliases: /wdt
     trigger:
@@ -24,4 +24,4 @@ command /withdrawtokens [<integer>]:
             enchant {_physicalToken} with sharpness 1
             give player {_physicalToken}
 
-        send "&aYou withdrew %arg-1% tokens and received %arg-1% enchanted sunflowers!" to player
+        send "&aYou withdrew %arg-1% tokens!" to player

@@ -1,0 +1,21 @@
+on death of player: #Get in-game tokens apon every kill
+    attacker is a player
+    set {_uuid} to uuid of attacker
+
+    set {_multiplier} to 1
+
+    if attacker has permission "killbuff.mvp+": #Add permission to MVP+: killbuff.mvp+
+        set {_multiplier} to 5 #MVP+ Kill Multiplier
+    else if attacker has permission "killbuff.mvp": #Add permission to MVP: killbuff.mvp
+        set {_multiplier} to 4 #MVP Kill Multiplier
+    else if attacker has permission "killbuff.vip+": #Add permission to VIP+: killbuff.vip+
+        set {_multiplier} to 2 #VIP+ Kill Multiplier
+    else if attacker has permission "killbuff.vip": #Add permission to VIP: killbuff.vip
+        set {_multiplier} to 1.5 #VIP Kill Multiplier
+
+    loop floor({_multiplier}) times:
+        add 1 to {tokens::%{_uuid}%}
+
+    set {_chance} to ({_multiplier} - floor({_multiplier})) * 100
+    chance of {_chance}%:
+        add 1 to {tokens::%{_uuid}%}

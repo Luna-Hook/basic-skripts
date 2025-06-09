@@ -1,4 +1,4 @@
-command /tbaltop:
+command /tbaltop: #Show members with highest token count
     aliases: /tokenbaltop
     trigger:
         send ""

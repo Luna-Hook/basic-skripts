@@ -1,4 +1,4 @@
-command /deposittokens:
+command /deposittokens: #Deposit in-game tokens for virtual tokens
     aliases: /dpt
     trigger:
         set {_uuid} to uuid of player
@@ -11,8 +11,8 @@ command /deposittokens:
                     remove loop-item from player's inventory
 
         if {_count} is 0:
-            send "&cYou have no enchanted sunflowers to deposit!" to player
+            send "&cYou have no tokens to deposit!" to player
             stop
 
         add {_count} to {tokens::%{_uuid}%}
-        send "&aSuccessfully deposited %{_count}% enchanted sunflowers for %{_count}% tokens!" to player
+        send "&aSuccessfully deposited %{_count}% tokens!" to player
