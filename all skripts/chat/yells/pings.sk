@@ -1,0 +1,5 @@
+on chat:
+    loop all players:
+        if message contains "%loop-player%":
+            replace all "%loop-player%" with "&c@%loop-player%&r" in message
+            play sound "ENTITY_EXPERIENCE_ORB_PICKUP" with volume 2 to loop-player

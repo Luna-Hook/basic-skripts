@@ -1,0 +1,26 @@
+command /freerank:
+    trigger:
+        if player has permission "ru.warrior":
+            send "&c&l[RANKS] &r&cYou already have that rank or a better one."
+            stop
+        if player has permission "ru.warrior+":
+            send "&c&l[RANKS] &r&cYou already have that rank or a better one."
+            stop
+        if player has permission "ru.warrior++":
+            send "&c&l[RANKS] &r&cYou already have that rank or a better one."
+            stop
+        if player has permission "ru.warrior+++":
+            send "&c&l[RANKS] &r&cYou already have that rank or a better one."
+            stop
+        if player has permission "ru.pro":
+            send "&c&l[RANKS] &r&cYou already have that rank or a better one."
+            stop
+        if player has permission "ru.master":
+            send "&c&l[RANKS] &r&cYou already have that rank or a better one."
+            stop
+        if player has permission "ru.god":
+            send "&c&l[RANKS] &r&cYou already have that rank or a better one."
+            stop
+        execute console command "lp user %player% parent set warrior"
+        send "&a&l[RANKS] &r&aYou have been given the warrior rank!"
+        broadcast "&a&l[RANKS] &r&f&l%player%&r&f has claimed their free rank! Claim yours as well with '&l/freerank&r&f'"

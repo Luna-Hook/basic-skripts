@@ -1,0 +1,9 @@
+command /discord:
+	trigger:
+		broadcast ""
+		broadcast "&c&lWant to join our Discord?"
+		broadcast ""
+		broadcast "&cWe've got a wonderful community you can talk with, plus important announcements!"
+		broadcast "&cDM LunaHook for the Discord Link"
+		broadcast ""
+		play sound "block.bubble_column.whirlpool_inside" with volume 1 and pitch 1 to all players

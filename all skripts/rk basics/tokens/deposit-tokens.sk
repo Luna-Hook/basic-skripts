@@ -1,0 +1,18 @@
+command /deposittokens:
+    aliases: /dpt
+    trigger:
+        set {_uuid} to uuid of player
+        set {_count} to 0
+
+        loop all items in player's inventory:
+            if loop-item is sunflower:
+                if loop-item is enchanted with sharpness 1:
+                    add amount of loop-item to {_count}
+                    remove loop-item from player's inventory
+
+        if {_count} is 0:
+            send "&cYou have no enchanted sunflowers to deposit!" to player
+            stop
+
+        add {_count} to {tokens::%{_uuid}%}
+        send "&aSuccessfully deposited %{_count}% enchanted sunflowers for %{_count}% tokens!" to player

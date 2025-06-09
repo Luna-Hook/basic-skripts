@@ -1,0 +1,35 @@
+command /tbaltop:
+    aliases: /tokenbaltop
+    trigger:
+        send ""
+        send "&6&m------&r &6&lTop 10 Token Masters &6&m------"
+        set {_uuids::*} to indices of {tokens::*}
+        set {_index} to 0
+        loop 10 times:
+            set {_topvalue} to -1
+            set {_topuuid} to ""
+            loop {_uuids::*}:
+                set {_uuid} to loop-value-2
+                set {_val} to {tokens::%{_uuid}%}
+                if {_val} > {_topvalue}:
+                    set {_topvalue} to {_val}
+                    set {_topuuid} to {_uuid}
+            if {_topuuid} is not "":
+                set {_displayname} to "&eUnknown"
+                loop all players:
+                    if uuid of loop-player is {_topuuid}:
+                        set {_displayname} to "&a%loop-player%"
+                        stop loop
+                if {_displayname} is "&eUnknown":
+                    loop all offline players:
+                        if uuid of loop-offlineplayer is {_topuuid}:
+                            set {_displayname} to "&e%loop-offlineplayer%"
+                            stop loop
+                add 1 to {_index}
+                send "&e%{_index}%&7. %{_displayname}%&7: &b%{_topvalue}% tokens"
+                remove {_topuuid} from {_uuids::*}
+            else:
+                stop
+        send "&6&m--------------------------------------"
+        send ""
+

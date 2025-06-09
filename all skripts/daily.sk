@@ -1,0 +1,23 @@
+command /daily:
+    trigger:
+        set {_uuid} to uuid of player
+        set {_last} to {daily::%{_uuid}%}
+        set {_now} to now
+        if {_last} is set:
+            if difference between {_now} and {_last} is less than 24 hours:
+                send "&cYou have already claimed your daily reward. Come back later."
+                stop
+        set {daily::%{_uuid}%} to {_now}
+
+        set {_amount} to 5
+        if player has permission "d.vip":
+            set {_amount} to 10
+        if player has permission "d.vip+":
+            set {_amount} to 13
+        if player has permission "d.mvp":
+            set {_amount} to 20
+        if player has permission "d.mvp+":
+            set {_amount} to 25
+
+        add {_amount} to {tokens::%{_uuid}%}
+        send "&aYou received &e%{_amount}% &atokens from your daily reward!"

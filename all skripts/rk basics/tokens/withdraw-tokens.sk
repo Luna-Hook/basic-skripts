@@ -1,0 +1,27 @@
+
+# Command: Withdraw tokens in exchange for enchanted sunflowers
+command /withdrawtokens [<integer>]:
+    aliases: /wdt
+    trigger:
+        if arg-1 is not set:
+            send "&cPlease specify an amount to withdraw!" to player
+            stop
+        if arg-1 is less than 1:
+            send "&cYou must withdraw at least 1 token!" to player
+            stop
+
+        set {_uuid} to uuid of player
+        set {_tokens} to {tokens::%{_uuid}%}
+
+        if {_tokens} is less than arg-1:
+            send "&cToo much! You only have %{_tokens}% tokens!" to player
+            stop
+
+        subtract arg-1 from {tokens::%{_uuid}%}
+
+        loop arg-1 times:
+            set {_physicalToken} to sunflower
+            enchant {_physicalToken} with sharpness 1
+            give player {_physicalToken}
+
+        send "&aYou withdrew %arg-1% tokens and received %arg-1% enchanted sunflowers!" to player

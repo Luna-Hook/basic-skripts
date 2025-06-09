@@ -1,0 +1,9 @@
+command /shout <text>:
+	aliases: /broadcast, bcast
+	permission: shout.use
+	usage: /shout [text]
+	trigger:
+		broadcast ""
+		broadcast "&c&lRK4Fun &7» &f%colored arg-1%"
+		broadcast ""
+		play sound "block.note_block.pling" with volume 5 to all players

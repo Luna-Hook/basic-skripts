@@ -1,0 +1,11 @@
+command /ca:
+    permission: skript.clearall
+    permission message: &cYou do not have permission to use this command.
+    trigger:
+        clear inventory of player
+        set helmet of player to air
+        set chestplate of player to air
+        set leggings of player to air
+        set boots of player to air
+        set off hand item of player to air
+        send "&aYour inventory, armor, and offhand have been cleared." to player

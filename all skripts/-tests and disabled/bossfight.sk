@@ -1,0 +1,85 @@
+# Automatically starts the battle every 2 hours
+every 2 hours:
+    execute console command "/startbattle"
+
+command /startbattle:
+    trigger:
+        set {_loc} to location at -138, 77, 129
+
+        set {battle::active} to true
+        set {battle::start} to now
+        set {battle::killcount} to 0
+        set {battle::loc} to {_loc}
+        delete {battle::mobs::*}
+
+        # Close arena
+        execute console command "fill -136 82 130 -140 82 128 minecraft:oak_fence"
+        execute console command "fill -137 82 131 -139 82 127 minecraft:oak_fence"
+
+        # Spawn mobs
+        spawn 2 wardens at {_loc}
+        loop 20 times:
+            spawn zombie at {_loc}
+            spawn breeze at {_loc}
+            spawn blaze at {_loc}
+        loop 10 times:
+            spawn wither skeleton at {_loc}
+
+        wait 1 tick
+        locally suppress the variable save warnings
+        loop all entities in radius 15 around {_loc}:
+            set {_uuid} to uuid of loop-entity
+            if type of loop-entity is zombie:
+                add {_uuid} to {battle::mobs::*}
+                apply strength 2 to loop-entity for 10 minutes
+                apply speed 2 to loop-entity for 10 minutes
+            if type of loop-entity is breeze:
+                add {_uuid} to {battle::mobs::*}
+                apply strength 2 to loop-entity for 10 minutes
+                apply speed 2 to loop-entity for 10 minutes
+            if type of loop-entity is blaze:
+                add {_uuid} to {battle::mobs::*}
+                apply strength 2 to loop-entity for 10 minutes
+                apply speed 2 to loop-entity for 10 minutes
+            if type of loop-entity is warden:
+                add {_uuid} to {battle::mobs::*}
+                apply strength 2 to loop-entity for 10 minutes
+                apply speed 2 to loop-entity for 10 minutes
+            if type of loop-entity is wither skeleton:
+                add {_uuid} to {battle::mobs::*}
+                apply strength 2 to loop-entity for 10 minutes
+                apply speed 2 to loop-entity for 10 minutes
+
+        broadcast "&6[Boss Fight] &aA new battle has begun at -138 77 129! Defeat the mobs in 10 minutes!"
+
+# Track elapsed time and end battle after 10 minutes
+every second:
+    if {battle::active} is true:
+        set {_elapsed} to difference between now and {battle::start}
+        if {_elapsed} > 10 minutes:
+            loop all entities:
+                set {_uuid} to uuid of loop-entity
+                loop {battle::mobs::*}:
+                    if {_uuid} is loop-value-2:
+                        kill loop-entity
+            delete {battle::*}
+            execute console command "fill -136 82 130 -140 82 128 minecraft:air"
+            execute console command "fill -137 82 131 -139 82 127 minecraft:air"
+            broadcast "&6[Boss Fight] &cTime's up! The remaining mobs have been eliminated."
+
+# When any battle mob dies
+on death of zombie or breeze or blaze or warden or wither skeleton:
+    if {battle::active} is true:
+        set {_uuid} to uuid of victim
+        loop {battle::mobs::*}:
+            if {_uuid} is loop-value:
+                remove {_uuid} from {battle::mobs::*}
+                add 1 to {battle::killcount}
+                if size of {battle::mobs::*} = 0:
+                    delete {battle::*}
+                    execute console command "fill -136 82 130 -140 82 128 minecraft:air"
+                    execute console command "fill -137 82 131 -139 82 127 minecraft:air"
+                    drop 1 soul sand named "&dSoul Shard" at location at -138, 77, 129
+                    broadcast "&6[Boss Fight] &aAll enemies defeated! The &dSoul Shard &ahas appeared."
+                stop
+

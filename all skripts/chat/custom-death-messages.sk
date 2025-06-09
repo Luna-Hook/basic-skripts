@@ -1,0 +1,5 @@
+on death of player:
+	if attacker is a player:
+		set death message to "&7%attacker% killed %victim%"
+	else:
+		set death message to "&7%victim% died"

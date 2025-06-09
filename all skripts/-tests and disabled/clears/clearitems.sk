@@ -1,0 +1,11 @@
+every 45 seconds:
+    loop dropped items in all worlds:
+        delete loop-item
+
+command /ci:
+    permission: skript.clearitems
+    permission message: &cYou do not have permission to use this command.
+    trigger:
+        loop dropped items in all worlds:
+            delete loop-item
+        broadcast "&aAll ground items have been cleared."

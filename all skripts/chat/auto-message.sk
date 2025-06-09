@@ -1,0 +1,49 @@
+every 5 minutes:
+	set {randombc} to a random integer between 1 and 4
+	if {randombc} = 1:
+		broadcast " "
+		broadcast "&2&lRK&6&l4Fun"
+		broadcast " " 
+		broadcast "&cWant to talk to a &ewonderful&c community?"
+		broadcast "&cHead Over to our Discord Server! (DM LunaHook)"
+		broadcast " "
+		play sound "EXPERIENCE_GAIN" with volume 1 to all players
+	if {randombc} = 2: 
+		broadcast " "
+		broadcast "&2&lRK&6&l4Fun"
+		broadcast " " 
+		broadcast "&cDid you know you can &aUPGRADE&c your kits?"
+		broadcast "&9Do (/rankupgrade next) to see the cost of the next rank and (/rankupgrade upgrade) to upgrade."
+		broadcast " " 
+		play sound "EXPERIENCE_GAIN" with volume 1 to all players
+	if {randombc} = 3:
+		broadcast " " 
+		broadcast "&2&lRK&6&l4Fun"
+		broadcast " " 
+		broadcast "&cYou can get more tokens by selling ores (/warp SellOres)"
+		broadcast "&cOres can be found underground, under the sandstone or sometimes in spawn GEN (/warp GEN)"
+		broadcast " " 
+		play sound "EXPERIENCE_GAIN" with volume 1 to all players
+	if {randombc} = 4:
+		set {_max} to -1
+		set {_topuuid} to ""
+		loop {tokens::*}:
+			if loop-value > {_max}:
+				set {_max} to loop-value
+				set {_topuuid} to loop-index
+		if {_topuuid} is set:
+			set {_name} to "&eUnknown"
+			loop all players:
+				if uuid of loop-player is {_topuuid}:
+					set {_name} to "&a%loop-player%"
+					stop loop
+			if {_name} is "&eUnknown":
+				loop all offline players:
+					if uuid of loop-offlineplayer is {_topuuid}:
+						set {_name} to "&e%loop-offlineplayer%"
+						stop loop
+			broadcast "&dYou can get tokens from mining, killing, and AFKing!"
+			broadcast "&dTokens are the currency of the server."
+			broadcast "&dUse &b/dpt &dand &b/wdt &dto manage them."
+			broadcast "&6&lTop Token Master: %{_name}% &7(&b%{_max}%&7)"
+

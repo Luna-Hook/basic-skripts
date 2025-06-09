@@ -1,0 +1,42 @@
+command /regen <text>:
+    trigger:
+        if player is not an op:
+            send "&cYou do not have permission to use this command."
+            stop
+
+        if arg 1 is "pvproom":
+            send "&aStarting automatic regeneration of PvP room."
+            set {_x} to -159
+            set {_y} to 62
+            set {_z} to 151
+            set {_x2} to -115
+            set {_y2} to 20
+            set {_z2} to 107
+
+            execute player command "//pos1 %{_x}%,%{_y}%,%{_z}%"
+            execute player command "//pos2 %{_x2}%,%{_y2}%,%{_z2}%"
+            execute player command "//sel cuboid"
+            execute player command "//set stone,gold_ore,diamond_ore,emerald_ore,coal_ore,gold_ore,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,stone,iron_block"
+            execute player command "//replace iron_block iron_block,gold_block"
+
+        else if arg 1 is "gen":
+            send "&aStarting automatic regeneration of generator."
+            set {_x} to -118
+            set {_y} to 83
+            set {_z} to 125
+            set {_x2} to -110
+            set {_y2} to 87
+            set {_z2} to 133
+
+            execute player command "//pos1 %{_x}%,%{_y}%,%{_z}%"
+            execute player command "//pos2 %{_x2}%,%{_y2}%,%{_z2}%"
+            execute player command "//sel cuboid"
+            execute player command "//set stone,diamond_block,netherite_block,stone,diamond_block,diamond_block,stone,stone,stone"
+            execute player command "//replace diamond_block diamond_block,iron_ore,iron_ore,iron_ore,gold_ore,iron_ore,gold_ore,iron_ore,gold_ore"
+            execute player command "//replace diamond_block iron_block,gold_block"
+            execute player command "//replace netherite_block diamond_ore,diamond_ore,diamond_ore,emerald_ore,emerald_ore,emerald_ore,emerald_ore,diamond_ore,emerald_ore,emerald_ore,emerald_ore,emerald_ore,ancient_debris"
+            execute player command "//replace ancient_debris diamond_ore,emerald_ore,emerald_ore,emerald_ore,ancient_debris"
+
+        else:
+            send "&cInvalid argument. Use /regen gen or /regen pvproom."
+

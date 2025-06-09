@@ -1,0 +1,17 @@
+command /ce [<text>]:
+    permission: skript.cleareverything
+    permission message: &cYou do not have permission to use this command.
+    trigger:
+        if arg is "--confirm":
+            loop all players:
+                clear inventory of loop-player
+                set helmet of loop-player to air
+                set chestplate of loop-player to air
+                set leggings of loop-player to air
+                set boots of loop-player to air
+                set off hand item of loop-player to air
+            loop dropped items in all worlds:
+                delete loop-item
+            broadcast "&cAll players' inventories, armor, offhand, and ground items have been cleared."
+        else:
+            send "&cInvalid usage. Use /ce --confirm to clear everything." to player

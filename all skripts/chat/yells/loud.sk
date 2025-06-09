@@ -1,0 +1,5 @@
+command /loud <text>:
+    permission: op
+    trigger:
+        loop all players:
+            send title "&l%arg-1%" with subtitle "" to loop-player for 3 seconds

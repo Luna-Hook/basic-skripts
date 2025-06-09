@@ -1,0 +1,33 @@
+command /givetokens <offline player> <number>:
+    permission: op
+    permission message: &cYou don't have permission to use this command.
+    trigger:
+        set {_uuid} to uuid of arg-1
+        add arg-2 to {tokens::%{_uuid}%}
+        send "&aYou gave &e%arg-2% &atokens to &b%arg-1%&a."
+        if arg-1 is online:
+            send "&aYou received &e%arg-2% &atokens!" to arg-1
+
+command /removetokens <offline player> <number>:
+    permission: op
+    permission message: &cYou don't have permission to use this command.
+    trigger:
+        set {_uuid} to uuid of arg-1
+        set {_tokens} to {tokens::%{_uuid}%}
+        if {_tokens} is less than arg-2:
+            send "&cCannot remove &e%arg-2% &ctokens. &b%arg-1% &conly has &e%{_tokens}%&c tokens."
+            stop
+        subtract arg-2 from {tokens::%{_uuid}%}
+        send "&aYou removed &e%arg-2% &atokens from &b%arg-1%&a."
+        if arg-1 is online:
+            send "&c%arg-2% tokens were removed from your balance." to arg-1
+
+command /cleartokens <offline player>:
+    permission: op
+    permission message: &cYou don't have permission to use this command.
+    trigger:
+        set {_uuid} to uuid of arg-1
+        delete {tokens::%{_uuid}%}
+        send "&aYou cleared &b%arg-1%'s &atokens."
+        if arg-1 is online:
+            send "&cYour tokens were cleared by an admin." to arg-1

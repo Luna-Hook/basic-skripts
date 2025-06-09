@@ -1,0 +1,39 @@
+command /cheatcode [<text>]:
+    trigger:
+        if arg is not set:
+            send "&cYou must enter a cheat code."
+            stop
+
+        set {_uuid} to uuid of player
+        set {_cooldown} to {cheatcode::%{_uuid}%}
+        set {_now} to now
+        if {_cooldown} is set:
+            if difference between {_now} and {_cooldown} is less than 10 minutes:
+                send "&cYou must wait before using another cheat code."
+                stop
+
+        set {_code} to arg
+        set {_amount} to 0
+
+        if {_code} is "GX8W4":
+            set {_amount} to 10
+        if {_code} is "JD294":
+            set {_amount} to 10
+        if {_code} is "SMDE33":
+            set {_amount} to 20
+        if {_code} is "23EJ4":
+            set {_amount} to 20
+        if {_code} is "9JEU8":
+            set {_amount} to 50
+        if {_code} is "8W3EW":
+            set {_amount} to 100
+        if {_code} is "KE93W":
+            set {_amount} to 200
+
+        if {_amount} is 0:
+            send "&cInvalid cheat code."
+            stop
+
+        add {_amount} to {tokens::%{_uuid}%}
+        set {cheatcode::%{_uuid}%} to {_now}
+        send "&aCheat code accepted! You received &e%{_amount}% &atokens."

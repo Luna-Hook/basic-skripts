@@ -1,0 +1,63 @@
+command /duels:
+    trigger:
+        set {_gui} to chest inventory with 2 rows named "PvP Rooms"
+        loop 18 times:
+            set slot (loop-number - 1) of {_gui} to blue concrete named "Room %loop-number%"
+        open {_gui} to player
+
+command /duel:
+    trigger:
+        execute player command "/duels"
+
+command /customfight:
+    trigger:
+        execute player command "/duels"
+
+command /customfights:
+    trigger:
+        execute player command "/duels"
+
+on inventory click:
+    if name of event-inventory is "PvP Rooms":
+        cancel event
+        if clicked item is not air:
+            set {_slot} to clicked slot
+            add 1 to {_slot}
+            if {_slot} is 1:
+                teleport player to location(1, 1, 1)
+            if {_slot} is 2:
+                teleport player to location(2, 2, 2)
+            if {_slot} is 3:
+                teleport player to location(3, 3, 3)
+            if {_slot} is 4:
+                teleport player to location(4, 4, 4)
+            if {_slot} is 5:
+                teleport player to location(5, 5, 5)
+            if {_slot} is 6:
+                teleport player to location(6, 6, 6)
+            if {_slot} is 7:
+                teleport player to location(7, 7, 7)
+            if {_slot} is 8:
+                teleport player to location(8, 8, 8)
+            if {_slot} is 9:
+                teleport player to location(9, 9, 9)
+            if {_slot} is 10:
+                teleport player to location(10, 10, 10)
+            if {_slot} is 11:
+                teleport player to location(11, 11, 11)
+            if {_slot} is 12:
+                teleport player to location(12, 12, 12)
+            if {_slot} is 13:
+                teleport player to location(13, 13, 13)
+            if {_slot} is 14:
+                teleport player to location(14, 14, 14)
+            if {_slot} is 15:
+                teleport player to location(15, 15, 15)
+            if {_slot} is 16:
+                teleport player to location(16, 16, 16)
+            if {_slot} is 17:
+                teleport player to location(17, 17, 17)
+            if {_slot} is 18:
+                teleport player to location(18, 18, 18)
+
+

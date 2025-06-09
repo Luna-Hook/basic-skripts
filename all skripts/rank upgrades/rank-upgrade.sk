@@ -1,0 +1,93 @@
+command /rankupgrade [<text>]:
+    permission: rank.upgrade
+    permission message: &cYou do not have permission to use this command.
+    trigger:
+        if arg is not set:
+            send "&cUsage: /rankupgrade <next/upgrade>"
+            stop
+
+        set {_uuid} to uuid of player
+        set {_current} to ""
+
+        if player has permission "ru.god":
+            set {_current} to "god"
+        if {_current} is "":
+            if player has permission "ru.master":
+                set {_current} to "master"
+        if {_current} is "":
+            if player has permission "ru.pro":
+                set {_current} to "pro"
+        if {_current} is "":
+            if player has permission "ru.warrior+++":
+                set {_current} to "warrior+++"
+        if {_current} is "":
+            if player has permission "ru.warrior++":
+                set {_current} to "warrior++"
+        if {_current} is "":
+            if player has permission "ru.warrior+":
+                set {_current} to "warrior+"
+        if {_current} is "":
+            if player has permission "ru.warrior":
+                set {_current} to "warrior"
+
+        if arg is "next":
+            if {_current} is "warrior":
+                send "&eNext rank: &6Warrior+ &7(100 tokens)"
+                send "&f&lRun /rankupgrade upgrade to purchase the next rank."
+            if {_current} is "warrior+":
+                send "&eNext rank: &6Warrior++ &7(200 tokens)"
+                send "&f&lRun /rankupgrade upgrade to purchase the next rank."
+            if {_current} is "warrior++":
+                send "&eNext rank: &6Warrior+++ &7(300 tokens)"
+                send "&f&lRun /rankupgrade upgrade to purchase the next rank."
+            if {_current} is "warrior+++":
+                send "&eNext rank: &6PRO &7(500 tokens)"
+                send "&f&lRun /rankupgrade upgrade to purchase the next rank."
+            if {_current} is "pro":
+                send "&eNext rank: &6Master &7(500 tokens)"
+                send "&f&lRun /rankupgrade upgrade to purchase the next rank."
+            if {_current} is "master":
+                send "&eNext rank: &6GOD &7(500 tokens)"
+                send "&f&lRun /rankupgrade upgrade to purchase the next rank."
+            if {_current} is "god":
+                send "&aYou already have the highest rank!"
+            stop
+
+        if arg is "upgrade":
+            set {_tokens} to {tokens::%{_uuid}%}
+
+            if {_current} is "warrior":
+                set {_cost} to 100
+                set {_next} to "warrior+"
+            if {_current} is "warrior+":
+                set {_cost} to 200
+                set {_next} to "warrior++"
+            if {_current} is "warrior++":
+                set {_cost} to 300
+                set {_next} to "warrior+++"
+            if {_current} is "warrior+++":
+                set {_cost} to 500
+                set {_next} to "pro"
+            if {_current} is "pro":
+                set {_cost} to 500
+                set {_next} to "master"
+            if {_current} is "master":
+                set {_cost} to 500
+                set {_next} to "god"
+            if {_current} is "god":
+                send "&aYou already have the highest rank!"
+                stop
+            if {_current} is "default":
+                send "&cYou need to run &r&7&l/freerank &r&cfirst."
+                stop
+
+            if {_tokens} >= {_cost}:
+                subtract {_cost} from {tokens::%{_uuid}%}
+                execute console command "lp user %player% parent set %{_next}%"
+                send "&aYou have been promoted to rank: &6%{_next}%!"
+            else:
+                set {_needed} to {_cost} - {_tokens}
+                send "&cYou don't have enough tokens to upgrade!"
+                send "&7You need &e%{_needed}% &7more tokens to upgrade to &6%{_next}%."
+
+

@@ -1,0 +1,19 @@
+on chat:
+    cancel event
+    if player has permission "pr.fake":
+        set {_prefix} to "&x&F&F&0&0&0&0&lA&x&E&4&0&6&0&0&lD&x&C&8&0&C&0&0&lM&x&A&D&1&1&0&0&lI&x&9&1&1&7&0&0&lN "
+    if player has permission "pr.mvp":
+        set {_prefix} to "&x&B&2&0&0&0&0&lM&x&8&C&0&0&0&0&lV&x&6&5&0&0&0&0&lP "
+    else if player has permission "pr.vip":
+        set {_prefix} to "&x&F&F&C&8&0&0&lV&x&F&E&E&4&0&0&lI&x&F&D&F&F&0&0&lP "
+    else if player has permission "pr.mvp+":
+        set {_prefix} to "&x&B&2&0&0&0&0&lM&x&9&8&0&0&0&0&lV&x&7&F&0&0&0&0&lP&x&6&5&0&0&0&0&l+ "
+    else if player has permission "pr.vip+":
+        set {_prefix} to "&x&F&F&C&8&0&0&lV&x&F&E&D&A&0&0&lI&x&F&E&E&D&0&0&lP&x&F&D&F&F&0&0&l+ "
+    else if player has permission "pr.admin":
+        set {_prefix} to "&x&F&F&0&0&0&0&lA&x&E&4&0&6&0&0&lD&x&C&8&0&C&0&0&lM&x&A&D&1&1&0&0&lI&x&9&1&1&7&0&0&lN "
+    else:
+        set {_prefix} to ""
+    loop all players:
+        send "%{_prefix}%&7%player% >>>&r %message%" to loop-player
+

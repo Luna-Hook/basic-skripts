@@ -1,0 +1,14 @@
+# Command: Check token balance
+command /tokenbal [<offline player>]:
+    trigger:
+        if arg is set:
+            set {_uuid} to uuid of arg
+            set {_tokens} to {tokens::%{_uuid}%}
+            if {_tokens} is not set:
+                send "&c%arg% has no tokens."
+            else:
+                send "&b%arg% &ahas &e%{_tokens}% &atokens."
+        else:
+            set {_uuid} to uuid of player
+            set {_tokens} to {tokens::%{_uuid}%}
+            send "&aYou have &e%{_tokens}% &atokens!"
