@@ -1,4 +1,4 @@
-command /daily:
+command /daily: #Daily reward
     trigger:
         set {_uuid} to uuid of player
         set {_last} to {daily::%{_uuid}%}
@@ -9,15 +9,15 @@ command /daily:
                 stop
         set {daily::%{_uuid}%} to {_now}
 
-        set {_amount} to 5
-        if player has permission "d.vip":
-            set {_amount} to 10
-        if player has permission "d.vip+":
-            set {_amount} to 13
-        if player has permission "d.mvp":
-            set {_amount} to 20
-        if player has permission "d.mvp+":
-            set {_amount} to 25
+        set {_amount} to 5 #Default reward
+        if player has permission "d.vip": #Add permission to VIP: d.vip
+            set {_amount} to 10 #Set to VIP Reward
+        if player has permission "d.vip+": #Add permission to VIP+: d.vip+
+            set {_amount} to 1 #Set to VIP+ Reward
+        if player has permission "d.mvp": #Add permission to MVP: d.mvp
+            set {_amount} to 20 #Set to MVP Reward
+        if player has permission "d.mvp+": #Add permission to MVP+: d.mvp+
+            set {_amount} to 25 #Set to MVP+ Reward
 
-        add {_amount} to {tokens::%{_uuid}%}
-        send "&aYou received &e%{_amount}% &atokens from your daily reward!"
+        console command "eco give %player% %{_amount}%"
+        send "&aYou received &a$&e%{_amount}% as your daily reward!"
