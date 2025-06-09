@@ -1,7 +1,7 @@
 command /cheatcode [<text>]:
     trigger:
         if arg is not set:
-            send "&cYou must enter a cheat code."
+            send "&cYou must enter a code."
             stop
 
         set {_uuid} to uuid of player
